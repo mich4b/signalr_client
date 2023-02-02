@@ -69,7 +69,7 @@ class WebSupportingHttpClient extends SignalRHttpClient {
       headers.addMessageHeaders(request.headers);
 
       _logger?.finest(
-          "HTTP send: url '${request.url}', method: '${request.method}' content: '${request.content}' content length = '${(request.content as String).length}' headers: '$headers'");
+          "HTTP send: url '${request.url}', method: '${request.method}' content: '${request.content}' headers: '$headers'");
 
       final httpRespFuture = await Future.any(
           [_sendHttpRequest(httpClient, request, uri, headers), abortFuture]);
