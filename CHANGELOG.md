@@ -1,3 +1,6 @@
+## Next
+* Fix invalid type cast in WebSupportingHttpClient
+
 ## [1.3.3]
 
 * Allowing invocation arguments to be null
