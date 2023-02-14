@@ -55,32 +55,27 @@ class MessageHeaders {
   static const String AuthorizationHeaderName = "Authorization";
 
   // Properties
-  HashMap<String, String>? _headers;
+  final _headers = HashMap<String, String>();
 
-  Iterable<String> get names => _headers!.keys;
-  HashMap<String, String>? get asMap => _headers;
+  Iterable<String> get names => _headers.keys;
+  Map<String, String> get asMap => _headers;
 
-  bool get isEmpty => _headers!.length == 0;
-
-  // Methods
-  MessageHeaders() {
-    _headers = HashMap<String, String>();
-  }
+  bool get isEmpty => _headers.isEmpty;
 
   /// Gets the header with the specified key.
   String? getHeaderValue(String name) {
-    return _headers![name];
+    return _headers[name];
   }
 
   /// Sets the header with the specified key.
   void setHeaderValue(String name, String value) {
-    _headers![name] = value;
+    _headers[name] = value;
   }
 
   /// Removes the given header
   void removeHeader(String name) {
-    if (_headers!.containsKey(name)) {
-      _headers!.remove(name);
+    if (_headers.containsKey(name)) {
+      _headers.remove(name);
     }
   }
 
@@ -94,17 +89,8 @@ class MessageHeaders {
   }
 
   @override
-  String toString() {
-    if (isEmpty) return '{}';
-
-    String str = '';
-    for (var name in names) {
-      if (str.isNotEmpty) str += ', ';
-      str += '{ $name: ${_headers![name]} }';
-    }
-
-    return str;
-  }
+  String toString() =>
+      _headers.entries.map((e) => '{ ${e.key}: ${e.value} }').join(', ');
 }
 
 /// Defines properties common to all Hub messages.
