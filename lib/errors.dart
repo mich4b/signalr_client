@@ -5,7 +5,7 @@ class HttpError implements Exception {
   /// The HTTP status code represented by this error.
   final num statusCode;
 
-  final String? message;
+  final String message;
 
   // Methods
 
@@ -14,13 +14,11 @@ class HttpError implements Exception {
   /// errorMessage A descriptive error message.
   ///  statusCode The HTTP status code represented by this error.
   ///
-  HttpError(String? errorMessage, num statusCode)
+  HttpError(String errorMessage, num statusCode)
       : this.message = errorMessage,
         this.statusCode = statusCode;
 
-  String toString() {
-    return "$statusCode: $message";
-  }
+  String toString() => "$statusCode: $message";
 }
 
 /// Error thrown when a timeout elapses.
@@ -39,9 +37,7 @@ class TimeoutError implements Exception {
   TimeoutError([String errorMessage = "A timeout occurred."])
       : this.message = errorMessage;
 
-  String toString() {
-    return message;
-  }
+  String toString() => message;
 }
 
 /// Error thrown when an action is aborted.
@@ -59,9 +55,7 @@ class AbortError implements Exception {
   ///
   AbortError([String message = "An abort occurred."]) : this.message = message;
 
-  String toString() {
-    return message;
-  }
+  String toString() => message;
 }
 
 /// General Error that
@@ -69,7 +63,7 @@ class GeneralError implements Exception {
   // Properties
 
   /// The error message
-  final String? message;
+  final String message;
 
   // Methods
 
@@ -77,29 +71,19 @@ class GeneralError implements Exception {
   ///
   /// errorMessage: A descriptive error message.
   ///
-  GeneralError(String? errorMessage) : this.message = errorMessage;
+  GeneralError(this.message);
 
-  String toString() {
-    return message!;
-  }
+  String toString() => message;
 }
 
 class NotImplementedException extends GeneralError {
   // Methods
 
   NotImplementedException() : super("Not implemented.");
-
-  String toString() {
-    return message!;
-  }
 }
 
 class InvalidPayloadException extends GeneralError {
   // Methods
 
   InvalidPayloadException(String errorMessage) : super(errorMessage);
-
-  String toString() {
-    return message!;
-  }
 }

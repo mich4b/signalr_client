@@ -379,7 +379,8 @@ class HttpConnection implements IConnection {
           }
 
           if (negotiateResponse.isErrorResponse) {
-            throw new GeneralError(negotiateResponse.error);
+            throw new GeneralError(
+                negotiateResponse.error ?? "negotiateResponse isErrorResponse");
           }
 
           // if ((negotiateResponse as any).ProtocolVersion) {

@@ -98,7 +98,7 @@ class WebSupportingHttpClient extends SignalRHttpClient {
         return SignalRHttpResponse(httpResp.statusCode,
             statusText: httpResp.reasonPhrase, content: content);
       } else {
-        throw HttpError(httpResp.reasonPhrase, httpResp.statusCode);
+        throw HttpError(httpResp.reasonPhrase ?? '', httpResp.statusCode);
       }
     });
   }

@@ -215,10 +215,11 @@ class LongPollingTransport implements ITransport {
     if (onClose != null) {
       var logMessage = "(LongPolling transport) Firing onclose event.";
       if (_closeError != null) {
-        logMessage += " Error: " + _closeError.toString();
+        logMessage += " Error: $_closeError";
       }
       _logger?.finest(logMessage);
-      onClose!(error: GeneralError(_closeError?.toString()));
+      onClose?.call(
+          error: GeneralError(_closeError?.toString() ?? '_closeError'));
     }
   }
 }

@@ -116,13 +116,11 @@ class ServerSentEventsTransport implements ITransport {
       _sseClient = null;
 
       if (onClose != null) {
-        Exception? ex;
-        if (error != null) {
-          ex = (error is Exception)
-              ? error
-              : new GeneralError(error?.toString());
-        }
-        onClose!(error: ex);
+        Exception ex = (error is Exception)
+            ? error
+            : new GeneralError(error?.toString() ?? 'error');
+
+        onClose?.call(error: ex);
       }
     }
   }
