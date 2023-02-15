@@ -23,7 +23,7 @@ class WebSupportingHttpClient extends SignalRHttpClient {
 
   Future<SignalRHttpResponse> send(SignalRHttpRequest request) {
     // Check that abort was not signaled before calling send
-    if ((request.abortSignal != null) && request.abortSignal!.aborted!) {
+    if (request.abortSignal?.aborted == true) {
       return Future.error(AbortError());
     }
 
