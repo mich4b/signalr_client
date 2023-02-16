@@ -141,8 +141,8 @@ void main() {
         )
       ],
       [TextMessageFormat.write('{"type":6}'), PingMessage()]
-    ].forEach((e) {
-      test('StreamItem message -> ', () {
+    ].forEachIndexed((i, e) {
+      test('StreamItem message $i -> ', () {
         final protocol = new JsonHubProtocol();
         final payload = e[0];
         final expectedMessage = e[1];
